@@ -1,0 +1,16 @@
+/* Common styles for all logos in categories */
+.mobile-logo, .vehicle-logo, .property-logo, .Electronic-logo, .bikes-logo, .services-logo, .books-logo {
+    width: 11%;
+    height: 150px;
+}
+
+.mobile-logo img, .vehicle-logo img, .property-logo img, .Electronic-logo img, .bikes-logo img, .services-logo img, .books-logo img {
+    height: 90px;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+/* Spacing for logo text */
+.pix-1, .pix-2, .pix-3, .pix-4, .pix-5, .pix-6, .pix-7 {
+    margin-top: 10px;
+}
