@@ -216,9 +216,30 @@
     </div>
 
 
-/* *********************************************************** */
+/* ****************6-1-25******************************************* */
 
 
+<!-- 
+    <header class="header">
+        <div class="logo">
+            <img src="../img/logo.png" alt="BuyKart Logo" class="logo-img">
+        </div>
+        <nav class="nav">
+            <button id="dark-mode-toggle">Dark Mode</button>
+            <div class="profile" onclick="toggleDropdown()">
+                <img src="../img/m.jpg" alt="Profile Picture">
+                <span>Milind Chaudhari</span>
+            </div>
+            <div class="dropdown" id="profile-dropdown">
+                <a href="#"><img src="../icons/ads.png" alt="My Ads">My Ads</a>
+                <a href="#"><img src="../icons/packages.png" alt="Buy Packages">Buy Business Packages</a>
+                <a href="#"><img src="../icons/billing.png" alt="Billing">Bought Packages & Billing</a>
+                <a href="#"><img src="../icons/help.png" alt="Help">Help</a>
+                <a href="#"><img src="../icons/settings.png" alt="Settings">Settings</a>
+                <a href="#"><img src="../icons/logout.png" alt="Logout">Logout</a>
+            </div>
+        </nav>
+    </header> -->
 
 /* *********************************************************** */
 
