@@ -1,9 +1,6 @@
 <?php
 // Database configuration
-$servername = "localhost"; // Change if necessary
-$username = "root";        // Your database username
-$password = "";            // Your database password
-$dbname = "buykart"; // Your database name
+include("../config/db-connect.php");
 
 // Create a connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -37,7 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO `users` (`NAME`, `EMAIL`, `PASSWORD`) VALUES ('$name', '$email', '$password')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<h1>Sign-up successful! go and login your acc</h1>";
+        // echo "<h1>Sign-up successful! go and login your acc</h1>";
+        header("Location: ../pages/SignupSuccess.html");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -45,4 +43,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Close the connection
 $conn->close();
-?>

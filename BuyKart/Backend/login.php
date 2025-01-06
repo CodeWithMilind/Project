@@ -33,7 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user_name'] = $user['NAME'];
 
         // Redirect to dashboard or home page
-        header("Location: ../pages/user.php");
+        // header("Location: ../pages/user.php");
+        header("Location: ../pages/LoginSuccess.html");
         exit();
     } else {
         // Invalid credentials

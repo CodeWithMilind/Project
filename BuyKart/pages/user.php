@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../css/productGrid.css">
     <link rel="stylesheet" href="../css/header.css">
     <!--  -->
-    <link rel="stylesheet" href="../css/dark.css">
     <link rel="stylesheet" href="../css/user-header.css">
     <!-- for search icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
