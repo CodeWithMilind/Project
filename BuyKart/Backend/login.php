@@ -47,6 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,7 +69,7 @@ $conn->close();
         </form>
 
         <div class="link">
-            <p>Don't have an account? <a href="./signup.html">Sign Up</a></p>
+            <p>Don't have an account? <a href="./signup.php">Sign Up</a></p>
         </div>
     </div>
 </body>

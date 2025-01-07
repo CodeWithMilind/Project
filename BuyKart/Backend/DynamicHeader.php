@@ -4,7 +4,7 @@ session_start();
 
 // Redirect to login page if user is not logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../pages/login.html');
+    header('Location: ../Backend/login.php');
     exit();
 }
 
@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id'])) {
 if (isset($_GET['logout'])) {
     session_unset();
     session_destroy();
-    header('Location: ../pages/login.html');
+    header('Location: ../Backend/login.php');
     exit();
 }
 
@@ -62,7 +62,7 @@ $name = htmlspecialchars($user['name'] ?? 'Guest');
         </div>
 
         <div class="dropdown" id="profile-dropdown">
-            <a href="../pages/EditProfile.php"><img src="../img/logos/editProfile.png" alt="Edit Profile">Edit Profile</a>
+            <a href="./EditProfile.php"><img src="../img/logos/editProfile.png" alt="Edit Profile">Edit Profile</a>
             <a href=""><img src="../img/logos/My-Ads.png" alt="My Ads"> My Ads</a>
             <a href="#"><img src="../icons/packages.png" alt="Buy Packages"> Buy Business Packages</a>
             <a href="#"><img src="../icons/billing.png" alt="Billing"> Bought Packages & Billing</a>

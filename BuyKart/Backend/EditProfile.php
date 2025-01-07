@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
+<!-- Html file  -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -78,9 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <link rel="stylesheet" href="../css/Edit-Profile.css">
 
-
-
-
 </head>
 
 <body>
@@ -90,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="update-profile">
         <form action="" method="post" enctype="multipart/form-data">
-            <img src="<?= htmlspecialchars($user['PROFILE_PIC'] ?: '../images/default-avatar.png') ?>" alt="Profile Image" class="profile-image">
+            <img src="<?= htmlspecialchars($user['PROFILE_PIC'] ?: '../img/default.png') ?>" alt="Profile Image" class="profile-image">
 
             <div class="flex">
                 <div class="inputBox">
@@ -111,10 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a href="../pages/user.php" class="delete-btn">Go Back</a>
         </form>
     </div>
-
-
-
-
 
 </body>
 
