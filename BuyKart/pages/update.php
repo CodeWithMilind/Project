@@ -3,7 +3,7 @@ session_start();
 include("../config/db-connect.php"); // File to connect to the database
 
 // Fetch current user data
-$uid = 1; // Replace with dynamic session UID
+$uid = $_SESSION['user_id']; // Replace with dynamic session UID
 $query = "SELECT * FROM users WHERE UID = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $uid);
