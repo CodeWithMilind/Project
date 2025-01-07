@@ -1,5 +1,5 @@
 function openPage_login() {
-    window.location.href = './pages/login.html'; // Replace with your page URL
+    window.location.href = '../Backend/login.php'; // Replace with your page URL
 }
 
 
