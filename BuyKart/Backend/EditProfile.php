@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
-    $profile_pic = $user['PROFILE_PIC'];
+    $profile_pic = $user['profile_pic'];
 
     // Validate input
     if (empty($password)) {
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Verify password
-    if ($password != $user['PASSWORD']) {
+    if ($password != $user['password']) {
         echo "Password is incorrect.";
         exit();
     }
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Update the database
-    $update_query = "UPDATE users SET NAME = ?, EMAIL = ?, PROFILE_PIC = ? WHERE UID = ?";
+    $update_query = "UPDATE users SET name = ?, email = ?, profile_pic = ? WHERE uid = ?";
     $stmt = $conn->prepare($update_query);
     $stmt->bind_param("sssi", $name, $email, $profile_pic, $uid);
 
@@ -88,14 +88,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="update-profile">
         <form action="" method="post" enctype="multipart/form-data">
-            <img src="<?= htmlspecialchars($user['PROFILE_PIC'] ?: '../img/default.png') ?>" alt="Profile Image" class="profile-image">
+            <img src="<?= htmlspecialchars($user['profile_pic'] ?: '../img/default.png') ?>" alt="Profile Image" class="profile-image">
 
             <div class="flex">
                 <div class="inputBox">
                     <span>Username:</span>
-                    <input type="text" name="name" value="<?= htmlspecialchars($user['NAME']) ?>" class="box">
+                    <input type="text" name="name" value="<?= htmlspecialchars($user['name']) ?>" class="box">
                     <span>Email:</span>
-                    <input type="email" name="email" value="<?= htmlspecialchars($user['EMAIL']) ?>" class="box">
+                    <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" class="box">
                     <span>Update Image:</span>
                     <input type="file" name="profile_pic" accept="image/jpg, image/jpeg, image/png" class="box">
                 </div>

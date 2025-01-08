@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Validate user credentials
-    $sql = "SELECT * FROM users WHERE EMAIL = ? AND PASSWORD = ?";
+    $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $email, $password);
     $stmt->execute();
@@ -29,8 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         // Login successful
         $user = $result->fetch_assoc();
-        $_SESSION['user_id'] = $user['UID'];
-        $_SESSION['user_name'] = $user['NAME'];
+        $_SESSION['user_id'] = $user['uid'];
+        $_SESSION['user_name'] = $user['name'];
 
         // Redirect to dashboard or home page
         // header("Location: ../pages/user.php");

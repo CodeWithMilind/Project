@@ -44,25 +44,25 @@ $name = htmlspecialchars($user['name'] ?? 'Guest');
             <!-- Dynamic profile picture -->
 
             <?php
-            $select = mysqli_query($conn, "SELECT * FROM `users` WHERE UID = '$user_id'") or die('query failed');
+            $select = mysqli_query($conn, "SELECT * FROM `users` WHERE uid = '$user_id'") or die('query failed');
             if (mysqli_num_rows($select) > 0) {
                 $fetch = mysqli_fetch_assoc($select);
             }
 
             // Default profile photo if not set
-            if ($fetch['PROFILE_PIC'] == '') {
+            if ($fetch['profile_pic'] == '') {
                 echo '<img src="../img/default.png">';
             } else {
-                echo '<img src="../uploads/' . $fetch['PROFILE_PIC'] . '">';
+                echo '<img src="../uploads/' . $fetch['profile_pic'] . '">';
             }
             ?>
 
             <!-- Display user's name -->
-            <span><?php echo $fetch['NAME']; ?></span>
+            <span><?php echo $fetch['name']; ?></span>
         </div>
 
         <div class="dropdown" id="profile-dropdown">
-            <a href="./EditProfile.php"><img src="../img/logos/editProfile.png" alt="Edit Profile">Edit Profile</a>
+            <a href="../Backend/EditProfile.php"><img src="../img/logos/editProfile.png" alt="Edit Profile">Edit Profile</a>
             <a href=""><img src="../img/logos/My-Ads.png" alt="My Ads"> My Ads</a>
             <a href="#"><img src="../icons/packages.png" alt="Buy Packages"> Buy Business Packages</a>
             <a href="#"><img src="../icons/billing.png" alt="Billing"> Bought Packages & Billing</a>

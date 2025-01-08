@@ -38,8 +38,6 @@
 
 
 
-
-
     <div class="categories">
         <h2>All Categories <br><br></h2>
         <div class="categories-container">
@@ -106,10 +104,14 @@
         </div>
     </div>
 
-    <!-- items grid -->
-    <div class="product-grid">
-        <!-- Item 1 -->
-        <div class="product-card">
+
+
+    <!-- ----items grid---- -->
+
+
+    <!-- <div class="product-grid"> -->
+    <!-- -------Item 1------- -->
+    <!-- <div class="product-card">
             <img src="../Products-img/camera.png" alt="Smart Watch">
             <div class="product-info">
                 <h3>₹ 600</h3>
@@ -120,14 +122,16 @@
                 <p>Dec 10</p>
             </div>
             <button class="wishlist-btn">❤️</button>
-        </div>
+        </div> -->
+
+    <?php include '../Backend/'; ?> <!-- Include the dynamic items -->
 
 
 
 
 
 
-        <!--  -->
+    <!--  -->
     </div>
 
 

@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
     // SQL query to insert data
-    $sql = "INSERT INTO `users` (`NAME`, `EMAIL`, `PASSWORD`) VALUES ('$name', '$email', '$password')";
+    $sql = "INSERT INTO `users` (`name`, `email`, `password`) VALUES ('$name', '$email', '$password')";
 
     if ($conn->query($sql) === TRUE) {
         // echo "<h1>Sign-up successful! go and login your acc</h1>";
