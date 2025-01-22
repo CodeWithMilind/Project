@@ -63,7 +63,7 @@ $name = htmlspecialchars($user['name'] ?? 'Guest');
 
         <div class="dropdown" id="profile-dropdown">
             <a href="../Backend/EditProfile.php"><img src="../img/logos/editProfile.png" alt="Edit Profile">Edit Profile</a>
-            <a href=""><img src="../img/logos/My-Ads.png" alt="My Ads"> My Ads</a>
+            <a href="../pages/MyAds.php"><img src="../img/logos/My-Ads.png" alt="My Ads"> My Ads</a>
             <a href="#"><img src="../icons/packages.png" alt="Buy Packages"> Buy Business Packages</a>
             <a href="#"><img src="../icons/billing.png" alt="Billing"> Bought Packages & Billing</a>
             <a href="#"><img src="../icons/help.png" alt="Help"> Help</a>
