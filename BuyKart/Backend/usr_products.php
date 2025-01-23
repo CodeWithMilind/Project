@@ -28,7 +28,7 @@ echo " <br><br><h2>
 // Check if products exist
 if ($result->num_rows > 0) {
     echo '<div class="product-grid">';
-    
+
     while ($row = $result->fetch_assoc()) {
         echo '<div class="product-card">';
         echo '<img src="' . $row['product_image'] . '" alt="' . $row['title'] . '">';
@@ -58,32 +58,10 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/productGrid.css">
-    <style>
-        /* css for the POST ADS Butoon */
 
-        .post-ads-btn {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        .post-ads-btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
 
 <body>
-    <button class="post-ads-btn" onclick="window.location.href='' ">Post Ads</button>
 
 
 </body>

@@ -43,28 +43,28 @@ body {
   color: white;
 }
 
-.btn.signup  {
+.btn.signup {
   background-color: blue;
   color: white;
 }
 
 .btn.dark-mode {
-  background-color: rgb(0, 0, 0);
+  background-color: gray;
   color: rgb(255, 255, 255);
 }
 
 body.dark-mode {
-  background-color: #121212;
+  background-color: gray;
   color: white;
 }
 
 .dark-mode .header {
-  background-color: #1e1e1e;
+  background-color: gray;
 }
 
 .dark-mode .btn {
   background-color: white;
-  color: black;
+  color: gray;
 }
 
 

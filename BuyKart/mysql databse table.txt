@@ -35,3 +35,6 @@ CREATE TABLE 'products' (
     'category' VARCHAR(100) NOT NULL,
     FOREIGN KEY ('uid') REFERENCES users('uid') ON DELETE CASCADE
 );
+
+
+ALTER TABLE products RENAME TO user_products;

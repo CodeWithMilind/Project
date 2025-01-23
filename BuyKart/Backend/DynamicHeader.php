@@ -35,7 +35,11 @@ $name = htmlspecialchars($user['name'] ?? 'Guest');
 
 <header class="header">
     <div class="logo">
-        <img src="../img/logo.png" alt="BuyKart Logo" class="logo-img">
+        <!-- <img src="../img/logo.png" alt="BuyKart Logo" class="logo-img"> -->
+        <a href="../pages/user.php">
+            <img src="../img/logo.png" alt="BuyKart Logo" class="logo-img">
+
+        </a>
     </div>
     <nav class="nav">
         <button id="dark-mode-toggle" class="btn dark-mode">Dark</button>
