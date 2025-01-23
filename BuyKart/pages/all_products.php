@@ -38,7 +38,8 @@ if ($result->num_rows > 0) {
         echo '<p>' . $row['address'] . '</p>';
         echo '<p>' . date("M d", strtotime($row['listing_date'])) . '</p>';
         echo '</div>';
-        echo '<button class="wishlist-btn">❤️</button>';
+        // echo '<button class="wishlist-btn">❤️</button>';
+        echo '<button class="wishlist-btn"><i class="fa-solid fa-heart"></i></button>';
         echo '</div>';
     }
     echo '</div>';
@@ -58,6 +59,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/productGrid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
 </head>
 
@@ -65,5 +67,12 @@ $conn->close();
 
 
 </body>
+<script>
+    document.querySelectorAll('.wishlist-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+    });
+</script>
 
 </html>
