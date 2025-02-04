@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../css/font.css">
     <link rel="stylesheet" href="../css/banner.css">
     <link rel="stylesheet" href="../css/productGrid.css">
+
+    <!-- header for applying dark mode -->
     <link rel="stylesheet" href="../css/header.css">
     <!--  -->
     <link rel="stylesheet" href="../css/user-header.css">

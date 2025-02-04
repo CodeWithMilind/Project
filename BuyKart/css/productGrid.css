@@ -1,11 +1,10 @@
-/* Grid Container */
-.product-grid {
+ .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
-  /* border: 2px solid red; */
-}
+} 
+
 
 /* Product Card */
 .product-card {
@@ -15,26 +14,48 @@
   position: relative;
   background: #fff;
   transition: transform 0.3s ease;
-  /* border: 2px solid red; */
+  width: 300px;
+  /* Fixed width for uniform sizing */
+  padding-bottom: 20px;
+  /* Adds space for info section */
   box-shadow: 5px 5px 10px gray;
-
 }
 
 .product-card:hover {
   transform: scale(1.05);
 }
 
-/* Product Image */
-.product-card img {
-  width: 100%;
+/* Image Box */
+.image-box {
+  width: 200px;
+  /* Fixed width for the image box */
   height: 200px;
+  /* Fixed height to ensure it's a square */
+  margin: 0 auto;
+  /* Centers the image box inside the card */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  /* Optional: background color for the box */
+  border-radius: 8px;
+}
+
+/* Product Image */
+.image-box img {
+  width: 100%;
+  /* Image fills the width of the box */
+  height: 100%;
+  /* Image fills the height of the box */
   object-fit: cover;
+  /* Ensures the image fits without distortion */
+
 }
 
 /* Product Info */
 .product-info {
   padding: 15px;
-  text-align: left;
+  text-align: center;
 }
 
 .product-info h3 {
@@ -50,23 +71,31 @@
 }
 
 /* Wishlist Button */
+/* Wishlist Button */
 .wishlist-btn {
   position: absolute;
   top: 10px;
   right: 10px;
   background: none;
-  /* border: none; */
-  /* font-size: 20px; */
   border: 2px solid black;
+  border-radius: 50%;
   cursor: pointer;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  /* Default color */
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .wishlist-btn:hover {
   color: rgb(156, 163, 76);
 }
 
-
-
 .wishlist-btn.active {
-  color: red;
+  color: rgb(0, 0, 0);
+  background-color: rgb(242, 94, 94);
 }

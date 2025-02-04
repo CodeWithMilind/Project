@@ -28,10 +28,11 @@ echo " <br><br><h2>
 // Check if products exist
 if ($result->num_rows > 0) {
     echo '<div class="product-grid">';
-
     while ($row = $result->fetch_assoc()) {
         echo '<div class="product-card">';
+        echo '<div class="image-box">';
         echo '<img src="' . $row['product_image'] . '" alt="' . $row['title'] . '">';
+        echo '</div>';
         echo '<div class="product-info">';
         echo '<h3>₹ ' . $row['price'] . '</h3>';
         echo '<h2><p>' . $row['title'] . '</p></h2>';
@@ -43,7 +44,7 @@ if ($result->num_rows > 0) {
     }
     echo '</div>';
 } else {
-    // echo "<p>No products found!</p>";
+    echo "<p>No products found!</p>";
 }
 
 // Close the connection

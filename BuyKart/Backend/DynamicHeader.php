@@ -1,6 +1,10 @@
+<!-- css = user-header.css -->
+
 <?php
 include '../config/db-connect.php';
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Redirect to login page if user is not logged in
 if (!isset($_SESSION['user_id'])) {
@@ -42,6 +46,7 @@ $name = htmlspecialchars($user['name'] ?? 'Guest');
         </a>
     </div>
     <nav class="nav">
+        <button><img src="../img/logos/cart.png" width="40px" height=auto alt=""></button>
         <button id="dark-mode-toggle" class="btn dark-mode">Dark</button>
 
         <div class="profile" onclick="toggleDropdown()">
@@ -68,8 +73,6 @@ $name = htmlspecialchars($user['name'] ?? 'Guest');
         <div class="dropdown" id="profile-dropdown">
             <a href="../Backend/EditProfile.php"><img src="../img/logos/editProfile.png" alt="Edit Profile">Edit Profile</a>
             <a href="../pages/MyAds.php"><img src="../img/logos/My-Ads.png" alt="My Ads"> My Ads</a>
-            <a href="#"><img src="../icons/packages.png" alt="Buy Packages"> Buy Business Packages</a>
-            <a href="#"><img src="../icons/billing.png" alt="Billing"> Bought Packages & Billing</a>
             <a href="#"><img src="../icons/help.png" alt="Help"> Help</a>
             <a href="#"><img src="../icons/settings.png" alt="Settings"> Settings</a>
             <a href="?logout=true"><img src="../icons/logout.png" alt="Logout"> Logout</a>
