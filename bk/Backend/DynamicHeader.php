@@ -47,7 +47,7 @@ $name = htmlspecialchars($user['name'] ?? 'Guest');
     </div>
     <nav class="nav">
         <button><img src="../img/logos/cart.png" width="40px" height=auto alt=""></button>
-        <button id="dark-mode-toggle" class="btn dark-mode">Dark</button>
+        <button id="dark-mode-toggle" class="btn dark-mode">🌘</button>
 
         <div class="profile" onclick="toggleDropdown()">
             <!-- Dynamic profile picture -->

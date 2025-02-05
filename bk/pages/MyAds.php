@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <!-- header for applying dark mode -->
+    <link rel="stylesheet" href="../css/dark-mode.css">
     <link rel="stylesheet" href="../css/categories.css">
     <link rel="stylesheet" href="../css/font.css">
     <link rel="stylesheet" href="../css/banner.css">
     <link rel="stylesheet" href="../css/productGrid.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <!--  -->
     <link rel="stylesheet" href="../css/user-header.css">
+    <link rel="stylesheet" href="../css/dropdown.css">
     <!-- for search icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -22,7 +23,7 @@
         .post-ads-btn {
             position: fixed;
             top: 15px;
-            right: 200px;
+            right: 250px;
             background-color: #007bff;
             color: #fff;
             border: none;

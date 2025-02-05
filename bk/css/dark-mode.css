@@ -1,0 +1,33 @@
+.btn.dark-mode {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+body.dark-mode {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.dark-mode .header {
+    background-color: rgb(0, 0, 0);
+}
+
+.dark-mode .btn {
+    background-color: white;
+    color: gray;
+}
+
+/* for categories text (format: body.dark-mode <attribute to dark> )*/
+body.dark-mode .category-label {
+    color: #fff;
+}
+
+#dark-mode-toggle {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}

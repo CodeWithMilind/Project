@@ -40,8 +40,10 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details</title>
     <link rel="stylesheet" href="../css/product-details.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
     <link rel="stylesheet" href="../css/user-header.css">
-    <link rel="stylesheet" href="../css/header.css">
+    <!-- <link rel="stylesheet" href="../css/header.css"> -->
+    <link rel="stylesheet" href="../css/dropdown.css">
 
     <link rel="stylesheet" href="../css/categories.css">
 
@@ -50,7 +52,6 @@ $conn->close();
 
 <body>
     <?php include '../Backend/DynamicHeader.php'; ?> <!-- Include the dynamic header -->
-    <!-- <?php include '../pages/categories.php'; ?> -->
 
     <div class="container">
         <!-- Left Side: Product Image & Details -->
@@ -63,7 +64,7 @@ $conn->close();
                 </div>
             </div>
             <div class="card">
-                <h1 style="color:rgb(38, 255, 0);">₹<?php echo number_format($product['price']); ?></h1>
+                <h1 style="color:rgb(0, 0, 0);">₹<?php echo number_format($product['price']); ?></h1>
                 <p><?php echo htmlspecialchars($product['description']); ?></p>
                 <p>
                 <h3>Location:</h3> <?php echo htmlspecialchars($product['address']); ?></p>

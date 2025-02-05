@@ -1,3 +1,5 @@
+/* used in user.php & home.html */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -5,15 +7,33 @@ body {
 }
 
 .header {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 60px; */
+
+  position: fixed;
+  /* Fixes the header at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
-  /* Reduced padding for smaller height */
   background-color: #f8f9fa;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   height: 60px;
-  /* Reduced header height */
+  z-index: 1000;
+
+
+
+
+
+
 }
 
 .logo-img {
@@ -46,29 +66,28 @@ body {
 .btn.signup {
   background-color: blue;
   color: white;
-}
 
-.btn.dark-mode {
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-}
+  /* for gap at right of sign up button  */
+  margin-right: 30px;
 
-body.dark-mode {
-  background-color: rgb(0, 0, 0);
-  color: white;
-}
-
-.dark-mode .header {
-  background-color: rgb(0, 0, 0);
-}
-
-.dark-mode .btn {
-  background-color: white;
-  color: gray;
 }
 
 
-/* for categories text (format: body.dark-mode <attribute to dark> )*/
-body.dark-mode .category-label {
-  color: #fff;
+
+
+
+
+/* extra code for profile pic */
+
+.profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }

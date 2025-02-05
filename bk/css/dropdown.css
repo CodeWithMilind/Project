@@ -1,0 +1,37 @@
+
+.dropdown {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.dropdown.active {
+    display: block;
+    /* top: 135px;
+    right: -3px; */
+}
+
+.dropdown a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.dropdown a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
