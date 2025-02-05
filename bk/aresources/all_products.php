@@ -35,8 +35,6 @@ if ($result->num_rows > 0) {
 
 
         // Bootstrap "Buy Now" button
-        //echo '<br><button class="btn btn-outline-success" onclick="buyNow(' . htmlspecialchars($row['product_id']) . ')">Buy Now</button>';
-
         // to hide data in link
         echo '<form method="POST" action="../Backend/product-details.php">';
         echo '<input type="hidden" name="product_id" value="' . htmlspecialchars($row['product_id']) . '">';

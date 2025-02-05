@@ -70,7 +70,7 @@ $name = htmlspecialchars($user['name'] ?? 'Guest');
             <span><?php echo $fetch['name']; ?></span>
         </div>
 
-        <div class="dropdown" id="profile-dropdown">
+        <div style="position: fixed;" class="dropdown" id="profile-dropdown">
             <a href="../Backend/EditProfile.php"><img src="../img/logos/editProfile.png" alt="Edit Profile">Edit Profile</a>
             <a href="../pages/MyAds.php"><img src="../img/logos/My-Ads.png" alt="My Ads"> My Ads</a>
             <a href="#"><img src="../icons/help.png" alt="Help"> Help</a>

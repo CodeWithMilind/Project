@@ -43,7 +43,7 @@ body {
 
 .dropdown {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 60px;
     right: 0;
     background-color: white;
@@ -55,6 +55,8 @@ body {
 
 .dropdown.active {
     display: block;
+    /* top: 135px;
+    right: -3px; */
 }
 
 .dropdown a {

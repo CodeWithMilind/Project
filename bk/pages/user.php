@@ -47,7 +47,7 @@
 
     <!-- ----All Products grid---- -->
 
-    <?php include '../Backend/all_products.php'; ?>
+    <?php include '../Backend/filtered_products.php'; ?>
 
 
 
