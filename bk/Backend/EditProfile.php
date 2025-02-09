@@ -18,17 +18,18 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
+
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
     $profile_pic = $user['profile_pic'];
+    $whatsapp_no = trim($_POST['whatsapp_no']);
 
     // Validate input
     if (empty($password)) {
         echo "Password is required.";
-
         exit();
     }
 
@@ -40,10 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Handle profile picture upload
     if (!empty($_FILES['profile_pic']['name'])) {
-        $max_size = 10 * 1024 * 1024; // 2MB
+        $max_size = 10 * 1024 * 1024; // 10MB
         $file_type = mime_content_type($_FILES['profile_pic']['tmp_name']);
         $file_size = $_FILES['profile_pic']['size'];
-
 
         $target_dir = "../uploads/";
         $profile_pic = $target_dir . basename($_FILES["profile_pic"]["name"]);
@@ -53,17 +53,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Update the database
-    $update_query = "UPDATE users SET name = ?, email = ?, profile_pic = ? WHERE uid = ?";
+    // Initialize query and parameter variables
+    $update_query = "UPDATE users SET name = ?, email = ?, profile_pic = ?";
+    $params = [$name, $email, $profile_pic];
+    $types = "sss";
+
+    // Add whatsapp_no to the query only if it's not empty
+    if (!empty($whatsapp_no)) {
+        $update_query .= ", mobile_no = ?";
+        $params[] = $whatsapp_no;
+        $types .= "i";
+    }
+
+    $update_query .= " WHERE uid = ?";
+    $params[] = $uid;
+    $types .= "i";
+
+    // Execute the query
     $stmt = $conn->prepare($update_query);
-    $stmt->bind_param("sssi", $name, $email, $profile_pic, $uid);
+    if (!$stmt) {
+        echo "Error preparing statement: " . $conn->error;
+        exit();
+    }
+
+    $stmt->bind_param($types, ...$params);
 
     if ($stmt->execute()) {
-        echo  "Profile updated successfully!";
+        echo "Profile updated successfully!";
     } else {
-        echo  "Error updating profile: " . $stmt->error;
+        echo "Error updating profile: " . $stmt->error;
     }
 }
+
 ?>
 
 <!-- Html file  -->
@@ -92,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="flex">
                 <div class="inputBox">
-                    <span>Username:</span>
+                    <span>Username: (Space Not Allowed)</span>
                     <input type="text" name="name" value="<?= htmlspecialchars($user['name']) ?>" class="box">
                     <span>Email:</span>
                     <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" class="box">
@@ -100,6 +121,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="file" name="profile_pic" accept="image/jpg, image/jpeg, image/png" class="box">
                 </div>
                 <div class="inputBox">
+                    <span>Whatsapp No:</span>
+                    <input type="text" name="whatsapp_no" value="<?= htmlspecialchars($user['mobile_no']) ?>" placeholder="Enter Whatsapp No" class="box">
+
                     <span>Password:</span>
                     <input type="password" name="password" placeholder="Enter password" class="box">
                 </div>

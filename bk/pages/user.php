@@ -43,15 +43,13 @@
 
 
     <!-- Include the Categories header -->
-    <?php include '../pages/categories.php'; ?>
+    <?php include '../pages/categories-user.php'; ?>
 
 
 
 
     <!-- ----All Products grid---- -->
-
     <?php include '../Backend/filtered_products.php'; ?>
-
 
 
 
@@ -65,5 +63,9 @@
     <script src="../script/open.js"></script>
     <script src="../script/script.js"></script>
 </body>
+<script>
+    // Global variable to identify the source page
+    var currentPage = 'user'; // You can use any name here, 'MyAds' in this case
+</script>
 
 </html>

@@ -6,6 +6,14 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+// if user is not logged then redirect to the login page
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../Backend/login.php");
+    exit();
+}
+
+
+
 $usr = $_SESSION['user_id'];
 
 // Create a connection
@@ -37,13 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (in_array($fileType, $allowedTypes)) {
         if (move_uploaded_file($_FILES["photos"]["tmp_name"], $targetFilePath)) {
 
-
             // Insert data into the database using prepared statements
             $stmt = $conn->prepare("INSERT INTO `products` (`title`, `price`, `address`, `product_image`, `listing_date`, `category`, `uid`) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("ssssssi", $productName, $price, $address, $targetFilePath, $listingDate, $category, $usr);
 
             if ($stmt->execute()) {
-                $message = "Ad submitted successfully!";
+                // $message = "Ad submitted successfully!";
+                $showPopup = true; // Flag to show the popup
             } else {
                 $message = "Error: " . $stmt->error;
             }
@@ -66,6 +74,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post an Ad</title>
     <link rel="stylesheet" href="../css/PostAds.css">
+    <link rel="stylesheet" href="../css/PostAds2.css">
+    <style>
+
+    </style>
 </head>
 
 <body>
@@ -95,36 +107,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <option value="bikes">Bikes</option>
                 <option value="services">Services</option>
                 <option value="books">Books</option>
+                <option value="others">others</option>
+
             </select>
 
-            <button type="submit">Submit Ad</button>
+            <button id="submit" type="submit">Submit Ad</button>
+
         </form>
+        <button id="homeButton" type="button" onclick="window.location.href='./user.php'">
+            Home
+        </button>
+    </div>
+
+    <!-- Popup HTML -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <div class="popup-icon">✨</div>
+        <p>Ad posted successfully!</p>
+        <div class="popup-buttons">
+            <button onclick="window.location.href='./user.php'">Return to Home</button>
+            <button onclick="closePopup()">Add More Posts</button>
+        </div>
     </div>
 
 
 </body>
-<script>
-    // js to preview the uploaded photo on the screen from device 
+<script src="../script/PostAds.js"></script>
+<?php if (isset($showPopup) && $showPopup): ?>
+    <script>
+        sessionStorage.setItem("showPopup", "true");
+        window.location.href = window.location.href; // Reload the page to clear the form
+    </script>
+<?php endif; ?>
 
-    const photosInput = document.getElementById('photos');
-    const previewContainer = document.getElementById('preview-container');
-
-    photosInput.addEventListener('change', () => {
-        previewContainer.innerHTML = ''; // Clear previous previews
-        const files = photosInput.files;
-
-        Array.from(files).forEach(file => {
-            const reader = new FileReader();
-
-            reader.onload = (e) => {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                previewContainer.appendChild(img);
-            };
-
-            reader.readAsDataURL(file);
-        });
-    });
-</script>
 
 </html>

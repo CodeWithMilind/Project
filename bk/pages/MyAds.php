@@ -45,9 +45,11 @@
 <body>
     <?php include '../Backend/DynamicHeader.php'; ?> <!-- Include the dynamic header -->
 
-    <?php include '../pages/categories.php'; ?>
+    <?php include '../pages/categories-myads.php'; ?>
 
-    <?php include '../Backend/usr_products.php'; ?>
+
+    <?php include '../Backend/user_filtered_products.php'; ?>
+
 
 
     <button class="post-ads-btn" onclick="window.location.href='./PostAds.php' ">Post Ads</button>
@@ -59,5 +61,9 @@
     <script src="../script/open.js"></script>
     <script src="../script/script.js"></script>
 </body>
+<script>
+    // Global variable to identify the source page
+    var currentPage = 'MyAds'; // You can use any name here, 'MyAds' in this case
+</script>
 
 </html>
