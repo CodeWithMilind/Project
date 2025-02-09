@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/dropdown.css">
 
+    <!-- css to post ads button -->
+    <link rel="stylesheet" href="../css/post-ads-btn.css">
+
 
 
 </head>
@@ -51,6 +54,7 @@
     <!-- ----All Products grid---- -->
     <?php include '../Backend/filtered_products.php'; ?>
 
+    <button class="post-ads-btn" onclick="window.location.href='./PostAds.php' ">Post Ads</button>
 
 
 

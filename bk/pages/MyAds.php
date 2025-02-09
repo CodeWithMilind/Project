@@ -17,28 +17,7 @@
     <!-- for search icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <style>
-        /* css for the POST ADS Butoon */
-
-        .post-ads-btn {
-            position: fixed;
-            top: 15px;
-            right: 250px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        .post-ads-btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/post-ads-btn.css">
 
 </head>
 
@@ -62,8 +41,7 @@
     <script src="../script/script.js"></script>
 </body>
 <script>
-    // Global variable to identify the source page
-    var currentPage = 'MyAds'; // You can use any name here, 'MyAds' in this case
+
 </script>
 
 </html>

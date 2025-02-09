@@ -32,16 +32,17 @@ button {
 }
 
 
-button #submit {
+button {
     background-color: #28a745;
-    color: white;
+    color: rgb(136, 211, 102);
     cursor: pointer;
 }
 
-button #submit:hover {
+button:hover {
     background-color: #218838;
-} */
+}
 
+*/
 /* 
 .message {
     color: green;
@@ -76,7 +77,7 @@ button #submit:hover {
 #homeButton {
     margin-top: 10px;
     background: #8e28a7;
-    color: white;
+    color: rgb(238, 91, 91);
     padding: 10px 20px;
     border: none;
     border-radius: 5px;

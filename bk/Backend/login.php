@@ -3,8 +3,7 @@
 session_start();
 
 // Database connection
-include '../config/db-connect.php'; // Include your database connection file
-
+include '../config/db-connect.php';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -13,32 +12,38 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$error = ""; // Variable to store error message
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
+    $email = $conn->real_escape_string($_POST['email']);
     $password = $_POST['password'];
 
-    // Validate user credentials
-    $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+    // Check if email exists
+    $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $email, $password);
+    $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        // Login successful
+        // Fetch user data
         $user = $result->fetch_assoc();
-        $_SESSION['user_id'] = $user['uid'];
-        $_SESSION['user_name'] = $user['name'];
 
-        // Redirect to dashboard or home page
-        // header("Location: ../pages/user.php");
-        header("Location: ../pages/LoginSuccess.html");
-        exit();
+        // Verify password without hashing
+        if ($password === $user['password']) {
+            // Login successful
+            $_SESSION['user_id'] = $user['uid'];
+            $_SESSION['user_name'] = $user['name'];
+
+            // Redirect to dashboard
+            header("Location: ../pages/LoginSuccess.html");
+            exit();
+        } else {
+            $error = "Invalid email or password!";
+        }
     } else {
-        // Invalid credentials
-        echo "Invalid email or password!";
+        $error = "Invalid email or password!";
     }
 
     $stmt->close();
@@ -46,8 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +65,12 @@ $conn->close();
 <body>
     <div class="form-container">
         <h2>Login</h2>
+
+        <!-- Show error message -->
+        <?php if (!empty($error)) {
+            echo "<p style='color: red;'>$error</p>";
+        } ?>
+
         <form action="" method="POST">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>

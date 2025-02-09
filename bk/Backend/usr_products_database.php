@@ -49,7 +49,9 @@ if ($result->num_rows > 0) {
     }
     echo '</div>';
 } else {
-    echo "<p>No products found!</p>";
+    echo "<div style='background-color: red; color: white; text-align: center; padding: 10px;'>
+    <h4>No products found!</h4>
+  </div><br><br>";
 }
 
 $stmt->close();

@@ -57,16 +57,8 @@
             <div class="category-label">Bikes</div>
         </div>
 
-        <!-- Category 6: Services -->
-        <div class="category" onclick="filterProducts('services')">
-            <div class="category-icon" style="background-color: #ffa500;">
-                <img src="https://www.olx.com.pk/assets/services.dc6aef196c0403dc61b0ee813f66fa5b.png"
-                    alt="Services">
-            </div>
-            <div class="category-label">Services</div>
-        </div>
 
-        <!-- Category 7: Books -->
+        <!-- Category 6: Books -->
         <div class="category" onclick="filterProducts('books')">
             <div class="category-icon" style="background-color: #ff4d4d;">
                 <img src="https://www.olx.com.pk/assets/books-sports-hobbies.6fee8d841b332d65a10f050f4a2ee1c8.png"
@@ -75,6 +67,14 @@
             <div class="category-label">Books</div>
         </div>
 
+        <!-- Category 7: others -->
+        <div class="category" onclick="filterProducts('others')">
+            <div class="category-icon" style="background-color:rgb(254, 254, 254);">
+                <img style="width: 70px;" src="../img/logos/other.png"
+                    alt="others">
+            </div>
+            <div class="category-label">Others</div>
+        </div>
     </div>
 </div>
 

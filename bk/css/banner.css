@@ -5,10 +5,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Ensures no overflow from pseudo-element */
+    overflow: hidden;
+    /* Ensures no overflow from pseudo-element */
     /* border: 2px solid red; */
 
-    
+
     padding-left: 462px;
 }
 
@@ -22,7 +23,8 @@
     height: 100%;
     background: url('../img/slider3.jpg') no-repeat center center/cover;
     filter: grayscale(20%) brightness(70%);
-    z-index: 0; /* Ensures it stays behind content */
+    z-index: 0;
+    /* Ensures it stays behind content */
 
     background-position: 0px 0px;
 }
@@ -32,7 +34,8 @@
     position: relative;
     text-align: center;
     color: black;
-    z-index: 1; /* Places content above background */
+    z-index: 1;
+    /* Places content above background */
 }
 
 .banner-content h1 {
@@ -65,9 +68,6 @@
 
 /* Search button hover effect */
 .search-bar button:hover {
-    color: rgb(0, 0, 0);
-    background-color: rgb(40, 221, 40);
+    color: rgb(255, 251, 251);
+    background-color: rgb(0, 0, 0);
 }
-
-
-
