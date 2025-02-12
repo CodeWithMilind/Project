@@ -13,11 +13,11 @@ $category = $_GET['category'] ?? 'All';
 
 // Prepare SQL query based on category selection and user ID
 if ($category === 'All') {
-    $sql = "SELECT title, price, address, listing_date, product_image, product_id FROM products WHERE uid = 4 ORDER BY listing_date DESC";
+    $sql = "SELECT * FROM products WHERE uid = $usr ORDER BY listing_date DESC";
     $stmt = $conn->prepare($sql);
     // $stmt->bind_param("i", $usr);
 } else {
-    $sql = "SELECT title, price, address, listing_date, product_image, product_id FROM products WHERE uid = 4 AND category = ? ORDER BY listing_date DESC";
+    $sql = "SELECT *  FROM products WHERE uid = $usr AND category = ? ORDER BY listing_date DESC";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $category);
 }
@@ -45,6 +45,8 @@ if ($result->num_rows > 0) {
         echo '</form>';
         echo '</div>';
         // echo '<button class="wishlist-btn">❤︎</button>';
+        echo '<button class="delete-product delete-btn" data-id="' . htmlspecialchars($row['product_id']) . '">⌦</button>';
+
         echo '</div>';
     }
     echo '</div>';
@@ -68,6 +70,32 @@ $conn->close();
     <link rel="stylesheet" href="../css/productGrid.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: grey;
+            border: 2px solid black;
+            border-radius: 10%;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            /* Default color */
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            color: rgb(0, 0, 0);
+            background-color: red;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -86,5 +114,6 @@ $conn->close();
         window.location.href = "../Backend/product-details.php?product_id=" + encodeURIComponent(productId);
     }
 </script>
+<script src="../script/delete-product.js"></script>
 
 </html>

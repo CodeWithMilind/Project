@@ -84,7 +84,7 @@ $conn->close();
                 </div>
             </div>
             <div class="card">
-                <h1 class="price_tag" style="color:rgb(0, 0, 0);">₹<?php echo number_format($product['price']); ?></h1>
+                <h1 class="price_tag">₹<?php echo number_format($product['price']); ?></h1>
                 <p><?php echo htmlspecialchars($product['description']); ?></p>
                 <p>
                 <h3>Location:</h3> <?php echo htmlspecialchars($product['address']); ?></p>
@@ -132,5 +132,7 @@ $conn->close();
 </script>
 <script src="../script/open.js"></script>
 <script src="../script/script.js"></script>
+<script src="../script/delete-product.js"></script>
+
 
 </html>
