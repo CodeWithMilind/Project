@@ -37,9 +37,10 @@
         <div class="banner-content">
             <h1>Online Buy-Sell Platform</h1>
             <div class="search-bar">
-                <input type="text" placeholder="Search..">
-                <button type="submit"><i class="fa fa-search"></i></button>
-
+                <form method="GET" action="./user.php">
+                    <input type="text" name="search" placeholder="Search..">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
             </div>
         </div>
     </div>

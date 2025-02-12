@@ -1,37 +1,49 @@
 <?php
-include '../config/db-connect.php';
+include '../config/db-connect.php'; // Include your DB connection file
 
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if category is set
-$category = isset($_GET['category']) ? $_GET['category'] : 'All';
+// Get category and search query from URL, and escape them for security
+$category = isset($_GET['category']) ? mysqli_real_escape_string($conn, $_GET['category']) : 'All';
+$searchQuery = isset($_GET['search']) ? mysqli_real_escape_string($conn, $_GET['search']) : '';
 
-// Modify SQL query based on category selection
-if ($category === 'All') {
-    $sql = "SELECT title, price, address, listing_date, product_image, product_id FROM products ORDER BY listing_date DESC";
+// Modify SQL query based on category and search input
+if ($category === 'All' && empty($searchQuery)) {
+    $sql = "SELECT  *  
+            FROM products 
+            ORDER BY listing_date DESC";
+} elseif ($category !== 'All' && empty($searchQuery)) {
+    $sql = "SELECT  *  
+            FROM products 
+            WHERE category = '$category' 
+            ORDER BY listing_date DESC";
+} elseif ($category === 'All' && !empty($searchQuery)) {
+    $sql = "SELECT  *  
+            FROM products 
+            WHERE title LIKE '%$searchQuery%' 
+               OR category LIKE '%$searchQuery%' 
+               OR address LIKE '%$searchQuery%' 
+            ORDER BY listing_date DESC";
 } else {
-    $sql = "SELECT title, price, address, listing_date, product_image, product_id FROM products WHERE category = ? ORDER BY listing_date DESC";
+    $sql = "SELECT  *  
+            FROM products 
+            WHERE category = '$category' 
+              AND (title LIKE '%$searchQuery%' 
+               OR category LIKE '%$searchQuery%' 
+               OR address LIKE '%$searchQuery%') 
+            ORDER BY listing_date DESC";
 }
 
-// Prepare the statement if category is not 'All'
-$stmt = $conn->prepare($sql);
-
-if ($category !== 'All') {
-    $stmt->bind_param("s", $category);
-    $stmt->execute();
-    $result = $stmt->get_result();
-} else {
-    $result = $conn->query($sql);
-}
+$result = mysqli_query($conn, $sql);
 
 echo "<br><br><h2><center>Ads</center></h2><br>";
 
-if ($result->num_rows > 0) {
+if (mysqli_num_rows($result) > 0) {
     echo '<div class="product-grid">';
-    while ($row = $result->fetch_assoc()) {
+    while ($row = mysqli_fetch_assoc($result)) {
         echo '<div class="product-card">';
         echo '<div class="image-box">';
         echo '<img src="' . $row['product_image'] . '" alt="' . $row['title'] . '">';
@@ -51,14 +63,16 @@ if ($result->num_rows > 0) {
     }
     echo '</div>';
 } else {
-
     echo "<div style='background-color: red; color: white; text-align: center; padding: 10px;'>
     <h4>No products found!</h4>
   </div><br><br>";
 }
 
+
+
 $conn->close();
 ?>
+
 
 
 <!DOCTYPE html>
