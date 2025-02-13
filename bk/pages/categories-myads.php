@@ -77,10 +77,11 @@
     </div>
 </div>
 
+
 <script>
     // function for MyAds.php
     function filterProducts(category) {
-        fetch(`../Backend/user_filtered_products.php?category=${category}`)
+        fetch(`../Backend/MyAds_filtered_products.php?category=${category}`)
             .then(response => response.text())
             .then(data => {
                 document.getElementById('product-list').innerHTML = data;

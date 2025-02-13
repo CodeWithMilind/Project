@@ -58,7 +58,12 @@ if (mysqli_num_rows($result) > 0) {
         echo '<br><button type="submit" class="btn btn-outline-success">Buy Now</button>';
         echo '</form>';
         echo '</div>';
-        echo '<button class="wishlist-btn">❤︎</button>';
+        // echo '<button class="wishlist-btn">❤︎</button>';
+        echo '<button class="wishlist-btn" onclick="this.classList.toggle(\'active\')">❤︎</button>';
+
+
+
+
         echo '</div>';
     }
     echo '</div>';
@@ -94,19 +99,8 @@ $conn->close();
 <body>
 
 </body>
+
 <script>
-    // Add event listener to all wishlist buttons
-    document.addEventListener("DOMContentLoaded", () => {
-        const wishlistButtons = document.querySelectorAll(".wishlist-btn");
-
-        wishlistButtons.forEach(button => {
-            button.addEventListener("click", () => {
-                // Toggle 'active' class to change button appearance
-                button.classList.toggle("active");
-            });
-        });
-    });
-
     // for buy now button
     function buyNow(productId) {
         window.location.href = "../Backend/product-details.php?product_id=" + productId; // Fix URL parameter name

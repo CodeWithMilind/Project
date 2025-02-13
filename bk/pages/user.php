@@ -20,7 +20,36 @@
 
     <!-- css to post ads button -->
     <link rel="stylesheet" href="../css/post-ads-btn.css">
+    <style>
+        /* Wishlist Button */
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: 2px solid black;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            /* Default color */
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
 
+        .wishlist-btn:hover {
+            color: rgb(156, 163, 76);
+        }
+
+        .wishlist-btn.active {
+            color: rgb(0, 0, 0);
+            background-color: rgb(242, 94, 94);
+        }
+    </style>
 
 
 </head>
@@ -69,8 +98,7 @@
     <script src="../script/script.js"></script>
 </body>
 <script>
-    // Global variable to identify the source page
-    var currentPage = 'user'; // You can use any name here, 'MyAds' in this case
+   
 </script>
 
 </html>

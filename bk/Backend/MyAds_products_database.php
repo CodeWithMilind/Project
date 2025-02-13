@@ -45,7 +45,10 @@ if ($result->num_rows > 0) {
         echo '</form>';
         echo '</div>';
         // echo '<button class="wishlist-btn">❤︎</button>';
-        echo '<button class="delete-product delete-btn" data-id="' . htmlspecialchars($row['product_id']) . '">⌦</button>';
+
+        // delete product button
+        echo '<button  onclick="deleteProduct(this)" class="delete-product delete-btn" data-id="' . htmlspecialchars($row['product_id']) . '">⌦</button>';
+
 
         echo '</div>';
     }
@@ -113,7 +116,32 @@ $conn->close();
     function buyNow(productId) {
         window.location.href = "../Backend/product-details.php?product_id=" + encodeURIComponent(productId);
     }
+
+
+
+    // to delete button
+    function deleteProduct(button) {
+        const productId = button.getAttribute("data-id");
+        if (confirm("Are you sure you want to delete this product?")) {
+            fetch("../Backend/delete.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: "product_id=" + encodeURIComponent(productId)
+                })
+                .then(response => response.text())
+                .then(data => {
+                    if (data.trim() === "success") {
+                        alert("Product deleted successfully!");
+                        location.reload();
+                    } else {
+                        alert("Error deleting product: " + data);
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        }
+    }
 </script>
-<script src="../script/delete-product.js"></script>
 
 </html>

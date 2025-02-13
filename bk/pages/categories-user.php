@@ -78,6 +78,7 @@
     </div>
 </div>
 
+
 <script>
     // function for User.php
     function filterProducts(category) {

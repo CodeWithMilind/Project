@@ -27,7 +27,7 @@
     <?php include '../pages/categories-myads.php'; ?>
 
 
-    <?php include '../Backend/user_filtered_products.php'; ?>
+    <?php include '../Backend/MyAds_filtered_products.php'; ?>
 
 
 
