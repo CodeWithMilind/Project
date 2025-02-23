@@ -1,21 +1,21 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #8e44ad, #3498db);
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
 }
 
-.wrapper {
+.container {
     display: flex;
     width: 80%;
-    height: 74%;
     max-width: 1200px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: white;
     border-radius: 20px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
 
@@ -40,29 +40,20 @@ body {
     font-size: 16px;
 }
 
-.right-panel {
-    flex: 1;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.form-container {
+.signup-container {
     width: 100%;
-    max-width: 350px;
+    max-width: 500px;
     padding: 20px;
 }
 
-h2 {
+.signup-container h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #6c63ff;
 }
 
-input[type="email"],
-input[type="password"] {
-    width: 100%;
+.signup-container input {
+    width: 80%;
     padding: 15px;
     margin: 10px 0;
     border: 1px solid #ddd;
@@ -71,12 +62,7 @@ input[type="password"] {
     background: #f5f5f5;
 }
 
-input:focus {
-    outline: none;
-    border-color: #6c63ff;
-}
-
-button {
+.signup-container button {
     width: 35%;
     /* Set the width to 35% */
     padding: 10px;
@@ -93,24 +79,22 @@ button {
     margin: 0 auto;
 }
 
-button:hover {
+.signup-container button:hover {
     background: linear-gradient(135deg, #ff9966, #ff5e62);
+
 }
 
-.options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.signup-container p {
+    text-align: center;
     font-size: 14px;
-    color: #999;
-    margin: 10px 0;
+    color: #333;
 }
 
-.options a {
-    color: #6c63ff;
+.signup-container a {
+    color: #6e8efb;
     text-decoration: none;
 }
 
-.options a:hover {
+.signup-container a:hover {
     text-decoration: underline;
 }

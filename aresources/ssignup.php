@@ -48,45 +48,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup</title>
-    <link rel="stylesheet" href="../css/sign-up.css">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../css/signup.css">
+
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="container">
         <div class="left-panel">
             <h1>Welcome to buyKart</h1>
-            <p>Discover amazing products at the best prices. Shop now and enjoy seamless buying and selling!</p>
+            <p>Join us today and start exploring amazing products!</p>
         </div>
-        <div class="right-panel">
-            <div class="form-container">
-                <h2>New User Sign Up</h2>
+        <div class="signup-container">
+            <h2>User Sign Up</h2>
 
-                <!-- Show error message -->
-                <?php if (!empty($error)) {
-                    echo "<p style='color: red;'>$error</p>";
-                } ?>
+            <?php if (!empty($error)) {
+                echo "<p style='color: red;'>$error</p>";
+            } ?>
 
-                <form action="" method="POST">
-                    <input type="text" name="name" placeholder="User Name" required>
-
-                    <input type="email" name="email" placeholder="Email" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <input type="password" name="confirm-password" placeholder="Confirm Password" required>
-
-
-                    <br><br>
-                    <button type="submit" name="submit">Sign Up</button>
-                </form>
-                <p> &nbsp; &nbsp; Already have an account? <a href="./login.php">Login</a></p>
-            </div>
+            <form action="" method="POST">
+                <input type="text" name="name" placeholder="User Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirm-password" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="./login.php">Login</a></p>
         </div>
     </div>
 </body>

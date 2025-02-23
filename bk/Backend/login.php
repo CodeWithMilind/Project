@@ -63,22 +63,32 @@ $conn->close();
 </head>
 
 <body>
-    <div class="form-container">
-        <h2>Login</h2>
+    <div class="wrapper">
+        <div class="left-panel">
+            <h1>Welcome to buyKart</h1>
+            <p>Discover amazing products at the best prices. Shop now and enjoy seamless buying and selling!</p>
+        </div>
+        <div class="right-panel">
+            <div class="form-container">
+                <h2>User Login</h2>
 
-        <!-- Show error message -->
-        <?php if (!empty($error)) {
-            echo "<p style='color: red;'>$error</p>";
-        } ?>
+                <!-- Show error message -->
+                <?php if (!empty($error)) {
+                    echo "<p style='color: red;'>$error</p>";
+                } ?>
 
-        <form action="" method="POST">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit" name="submit">Login</button>
-        </form>
-
-        <div class="link">
-            <p>Don't have an account? <a href="./signup.php">Sign Up</a></p>
+                <form action="" method="POST">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <div class="options">
+                        <label>
+                            <input type="checkbox" name="remember"> Remember
+                        </label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    <button type="submit" name="submit">Login</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>
