@@ -16,10 +16,6 @@
     <!-- <link rel="stylesheet" href="./css/dark.css"> -->
     <!-- for search icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./css/home-popup.css">
-
-
-
 
 </head>
 
@@ -128,11 +124,9 @@
 
     <!-- items grid -->
     <div class="product-grid">
-        
         <div class="product-card">
             <div class="image-box">
-                <img src="./Products-img/books.png" alt="">
-
+                <img src="./Products-img/camera.png" alt="Camera">
             </div>
             <div class="product-info">
                 <h3>₹ 600</h3>
@@ -147,8 +141,7 @@
 
         <div class="product-card">
             <div class="image-box">
-                <img src="./Products-img/books.png" alt="">
-
+                <img src="./Products-img/camera.png" alt="Camera">
             </div>
             <div class="product-info">
                 <h3>₹ 600</h3>
@@ -162,9 +155,8 @@
         </div>
 
         <div class="product-card">
-
             <div class="image-box">
-                <img src="./Products-img/books.png" alt="">
+                <img src="./Products-img/camera.png" alt="Camera">
             </div>
             <div class="product-info">
                 <h3>₹ 600</h3>
@@ -175,13 +167,12 @@
                 <p>Dec 10</p>
             </div>
             <button class="wishlist-btn">❤️</button>
-
-
         </div>
+
 
         <div class="product-card">
             <div class="image-box">
-                <img src="" alt="">
+                <img src="" alt="Camera">
             </div>
             <div class="product-info">
                 <h3></h3>
@@ -197,49 +188,18 @@
 
 
 
-        <!-- Modal Popup -->
-        <div id="loginModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2 style="color: black;">Login or Sign Up</h2>
-                <button onclick="window.location.href='./Backend/login.php';" class="btn login">Login</button>
-                <button onclick="window.location.href='./Backend/signup.php';" class="btn signup">Sign Up</button>
-            </div>
-        </div>
+
 
     </div>
 
 
+
+
+
+
+
+
     <script src="./script/dark-mode.js"></script>
-
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var modal = document.getElementById("loginModal");
-            var closeBtn = document.querySelector(".close");
-
-            // Show modal when clicking any product card
-            document.querySelectorAll(".product-card").forEach(card => {
-                card.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    modal.style.display = "flex";
-                });
-            });
-
-            // Close modal when clicking 'X' button
-            closeBtn.addEventListener("click", function () {
-                modal.style.display = "none";
-            });
-
-            // Close modal when clicking outside of it
-            window.addEventListener("click", function (event) {
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            });
-        });
-
-    </script>
 </body>
 
 </html>

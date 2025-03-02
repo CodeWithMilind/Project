@@ -32,6 +32,7 @@
     font-size: 25px;
     font-weight: monospace;
 }
+
 /* *********************************************************** */
 .main {
     /* border: 1px solid red; */
@@ -39,10 +40,11 @@
     display: flex;
     cursor: pointer;
 }
+
 /* -------------------------- */
 
 /* ------Login Button-------- */
- /* Style for the login button */
+/* Style for the login button */
 .login-btn {
     margin: 20px;
     margin-top: 14px;
@@ -62,6 +64,7 @@
 
 
 
-.big-img{
+.big-img {
     padding-top: 17px;
 }
+

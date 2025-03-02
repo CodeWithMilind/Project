@@ -1,13 +1,13 @@
 <?php
 session_start();
-include("../config/db-connect.php");
+include("../config/db-connect.php"); // File to connect to the database
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../Backend/login.php");
     exit();
 }
-
+$ispass = true;
 $uid = $_SESSION['user_id'];
 
 // Fetch current user data
@@ -18,83 +18,80 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
-$isPassValid = true;
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
-    $password = isset($_POST['password']) ? trim($_POST['password']) : "";
+    $password = trim($_POST['password']);
     $profile_pic = $user['profile_pic'];
     $whatsapp_no = trim($_POST['whatsapp_no']);
 
-    // Validate password
+    // Validate input
     if (empty($password)) {
-        echo "<script>alert('Password is required!');</script>";
-        $isPassValid = false;
-    } elseif ($password !== $user['password']) {
+        // echo "Password is required.";
+        echo "<script>alert('Password is Required!');</script>";
+        $ispass = false;
+    }
+
+    // Verify password
+    if ($password != $user['password'] && !empty($password)) {
+        // echo "Password is incorrect.";
         echo "<script>alert('Password is incorrect!');</script>";
-        $isPassValid = false;
+
+        // exit();
     }
 
     // Handle profile picture upload
-    if ($_FILES['profile_pic']['error'] == 0) {
-        $max_size = 10 * 1024 * 1024; // 10MB limit
-        $file_size = $_FILES['profile_pic']['size'];
-        $allowed_types = ['image/jpg', 'image/jpeg', 'image/png'];
-
+    if (!empty($_FILES['profile_pic']['name'])) {
+        $max_size = 10 * 1024 * 1024; // 10MB
         $file_type = mime_content_type($_FILES['profile_pic']['tmp_name']);
-        if (!in_array($file_type, $allowed_types)) {
-            echo "<script>alert('Invalid file type! Only JPG, JPEG, and PNG allowed.');</script>";
-            exit();
-        }
-
-        if ($file_size > $max_size) {
-            echo "<script>alert('File size exceeds 10MB!');</script>";
-            exit();
-        }
+        $file_size = $_FILES['profile_pic']['size'];
 
         $target_dir = "../uploads/";
         $profile_pic = $target_dir . basename($_FILES["profile_pic"]["name"]);
         if (!move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $profile_pic)) {
-            echo "<script>alert('Failed to upload profile picture.');</script>";
+            echo "Failed to upload profile picture.";
             exit();
         }
     }
 
-    if ($isPassValid) {
-        // Update query
-        $update_query = "UPDATE users SET name = ?, email = ?, profile_pic = ?";
-        $params = [$name, $email, $profile_pic];
-        $types = "sss";
+    // Initialize query and parameter variables
+    $update_query = "UPDATE users SET name = ?, email = ?, profile_pic = ?";
+    $params = [$name, $email, $profile_pic];
+    $types = "sss";
 
-        if (!empty($whatsapp_no)) {
-            $update_query .= ", mobile_no = ?";
-            $params[] = $whatsapp_no;
-            $types .= "s"; // Changed from "i" to "s" (since mobile_no is a string)
-        }
-
-        $update_query .= " WHERE UID = ?";
-        $params[] = $uid;
+    // Add whatsapp_no to the query only if it's not empty
+    if (!empty($whatsapp_no)) {
+        $update_query .= ", mobile_no = ?";
+        $params[] = $whatsapp_no;
         $types .= "i";
+    }
 
-        $stmt = $conn->prepare($update_query);
-        if (!$stmt) {
-            echo "<script>alert('Error preparing statement: " . $conn->error . "');</script>";
-            exit();
-        }
+    $update_query .= " WHERE uid = ?";
+    $params[] = $uid;
+    $types .= "i";
 
-        $stmt->bind_param($types, ...$params);
-        if ($stmt->execute()) {
-            echo "<script>alert('Profile updated successfully!');</script>";
-        } else {
-            echo "<script>alert('Error updating profile: " . $stmt->error . "');</script>";
-        }
+    // Execute the query
+    $stmt = $conn->prepare($update_query);
+    if (!$stmt) {
+        echo "Error preparing statement: " . $conn->error;
+        exit();
+    }
+
+    $stmt->bind_param($types, ...$params);
+
+    if ($stmt->execute() && $ispass == true) {
+        echo "Profile updated successfully!";
+    } else {
+        echo "Error updating profile: " . $stmt->error;
     }
 }
+
 ?>
 
-<!-- Html file -->
+<!-- Html file  -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,14 +100,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Profile</title>
+
     <link rel="stylesheet" href="../css/Edit-Profile.css">
+
 </head>
 
 <body>
     <div id="popup-message" class="popup-message"></div>
 
+
+
     <div class="update-profile">
-        <form action="" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <form action="" method="post" enctype="multipart/form-data">
             <img src="<?= htmlspecialchars($user['profile_pic'] ?: '../img/default.png') ?>" alt="Profile Image" class="profile-image">
 
             <div class="flex">
@@ -125,8 +126,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="inputBox">
                     <span>Whatsapp No:</span>
                     <input type="text" name="whatsapp_no" value="<?= htmlspecialchars($user['mobile_no']) ?>" placeholder="Enter Whatsapp No" class="box">
+
                     <span>Password:</span>
-                    <input type="password" id="password" name="password" placeholder="Enter password" class="box">
+                    <input type="password" name="password" placeholder="Enter password" class="box">
                 </div>
             </div>
 
@@ -135,16 +137,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     </div>
 
-    <script>
-        function validateForm() {
-            var password = document.getElementById("password");
-            if (password.value.trim() === "") {
-                alert("Password is required!");
-                return false;
-            }
-            return true;
-        }
-    </script>
 </body>
+<script>
+    function validateForm() {
+        var password = document.getElementById("password");
+        if (password.value.trim() === "") {
+            alert("Password is required!");
+            return false;
+        }
+        return true;
+    }
+</script>
 
 </html>
