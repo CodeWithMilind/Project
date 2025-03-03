@@ -7,25 +7,31 @@ if ($conn->connect_error) {
 }
 
 $usr = $_SESSION['user_id'] ?? 0; // Ensure session variable is set
-
-// Check if category is set
 $category = $_GET['category'] ?? 'All';
 
-// Prepare SQL query based on category selection and user ID
+// Prepare SQL query with JOIN to get full product details
+$sql = "SELECT p.*, f.fav_id FROM fav_products f 
+        JOIN products p ON f.product_id = p.product_id 
+        WHERE f.uid = ?";
+
+if ($category !== 'All') {
+    $sql .= " AND f.category = ?";
+}
+
+$sql .= " ORDER BY f.fav_id DESC";
+
+$stmt = $conn->prepare($sql);
+
 if ($category === 'All') {
-    $sql = "SELECT * FROM products WHERE uid = $usr ORDER BY listing_date DESC";
-    $stmt = $conn->prepare($sql);
-    // $stmt->bind_param("i", $usr);
+    $stmt->bind_param("i", $usr);
 } else {
-    $sql = "SELECT *  FROM products WHERE uid = $usr AND category = ? ORDER BY listing_date DESC";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $category);
+    $stmt->bind_param("is", $usr, $category);
 }
 
 $stmt->execute();
 $result = $stmt->get_result();
 
-echo "<br><br><h2><center>Your Ads</center></h2><br>";
+echo "<br><br><h2><center>Your Favourite Ads</center></h2><br>";
 
 if ($result->num_rows > 0) {
     echo '<div class="product-grid">';
@@ -43,13 +49,11 @@ if ($result->num_rows > 0) {
         echo '<input type="hidden" name="product_id" value="' . htmlspecialchars($row['product_id']) . '">';
         echo '<br><button type="submit" class="btn btn-outline-success">Buy Now</button>';
         echo '</form>';
+
+        // Delete button
+        echo '<button onclick="deleteProduct(this)" class="delete-product delete-btn" data-id="' . htmlspecialchars($row['product_id']) . '">⌦</button>';
+
         echo '</div>';
-        // echo '<button class="wishlist-btn">❤︎</button>';
-
-        // delete product button
-        echo '<button  onclick="deleteProduct(this)" class="delete-product delete-btn" data-id="' . htmlspecialchars($row['product_id']) . '">⌦</button>';
-
-
         echo '</div>';
     }
     echo '</div>';
@@ -89,7 +93,6 @@ $conn->close();
             justify-content: center;
             align-items: center;
             color: black;
-            /* Default color */
             transition: color 0.3s ease, background-color 0.3s ease;
         }
 
@@ -98,32 +101,16 @@ $conn->close();
             background-color: red;
         }
     </style>
-
 </head>
 
 <body>
 </body>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".wishlist-btn").forEach(button => {
-            button.addEventListener("click", () => {
-                button.classList.toggle("active");
-            });
-        });
-    });
-
-    function buyNow(productId) {
-        window.location.href = "../Backend/product-details.php?product_id=" + encodeURIComponent(productId);
-    }
-
-
-
-    // to delete button
     function deleteProduct(button) {
         const productId = button.getAttribute("data-id");
         if (confirm("Are you sure you want to delete this product?")) {
-            fetch("../Backend/Processes/delete.php", {
+            fetch("../Backend/Processes/delete-fav.php", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"

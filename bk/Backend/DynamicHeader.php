@@ -46,7 +46,9 @@ $name = htmlspecialchars($user['name'] ?? 'Guest');
         </a>
     </div>
     <nav class="nav">
-        <button><img src="../img/logos/cart.png" width="40px" height=auto alt=""></button>
+        <a href="../pages/MyCart.php">
+            <button><img src="../img/logos/cart.png" width="40px" height=40px alt=""></button>
+        </a>
         <button id="dark-mode-toggle" class="btn dark-mode">🌘</button>
 
         <div class="profile" onclick="toggleDropdown()">
