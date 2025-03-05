@@ -87,6 +87,7 @@
     <button class="post-ads-btn" onclick="window.location.href='./PostAds.php' ">Post Ads</button>
 
 
+    <?php include './footer.php'; ?>
 
 
 
