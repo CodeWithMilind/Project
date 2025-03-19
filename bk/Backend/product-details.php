@@ -115,7 +115,12 @@ $conn->close();
 
             <div class="card">
                 <h3>Map View</h3>
-                <iframe class="map-container" src="https://www.google.com/maps/embed?..." allowfullscreen loading="lazy"></iframe>
+                <?php
+                $encodedAddress = urlencode($product['address']);
+                $googleMapsUrl = "https://www.google.com/maps?q=" . $encodedAddress . "&output=embed";
+                ?>
+                <iframe class="map-container" src="<?php echo $googleMapsUrl; ?>" allowfullscreen loading="lazy"></iframe>
+
             </div>
         </div>
     </div>
