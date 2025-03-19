@@ -28,7 +28,7 @@
     <?php include '../Backend/MyCart_filtered_products.php'; ?>
 
     <?php include 'footer.php'; ?>
-    s
+    
 
 
 

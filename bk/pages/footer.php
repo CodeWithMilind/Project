@@ -11,8 +11,8 @@
             <a href="#">Home</a>
             <a href="#">Shop</a>
             <a href="./MyAds.php">Sell</a>
-            <a href="#">Contact</a>
-            <a href="#">Privacy Policy</a>
+            <a href="https://codewithmilind.github.io/PortFolio/">Contact</a>
+            <a href="./PrivAPolicy.php">Privacy Policy</a>
         </div>
         <div class="footer-social">
             <a href="#"><i class="fab fa-facebook"></i></a>

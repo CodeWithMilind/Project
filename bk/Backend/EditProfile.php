@@ -87,6 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param($types, ...$params);
         if ($stmt->execute()) {
             echo "<script>alert('Profile updated successfully!');</script>";
+
+            // to refresh the page
+            header("Location: ".$_SERVER['PHP_SELF']);
         } else {
             echo "<script>alert('Error updating profile: " . $stmt->error . "');</script>";
         }

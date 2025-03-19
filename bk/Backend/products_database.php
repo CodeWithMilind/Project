@@ -30,6 +30,13 @@ if ($category === 'All' && empty($searchQuery)) {
             ORDER BY listing_date DESC";
 }
 
+// check user id exit in session or not
+if (!isset($_SESSION['user_id'])) {
+    $user_id = null; // or redirect to login page
+} else {
+    $user_id = $_SESSION['user_id'];
+}
+
 $favProducts = [];
 if ($user_id) {
     $fav_sql = "SELECT product_id FROM fav_products WHERE uid = ?";

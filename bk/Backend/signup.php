@@ -78,8 +78,8 @@ $conn->close();
                     <input type="text" name="name" placeholder="User Name" required>
 
                     <input type="email" name="email" placeholder="Email" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <input type="password" name="confirm-password" placeholder="Confirm Password" required>
+                    <input type="password" minlength="8" name="password" placeholder="Password" required>
+                    <input type="password" minlength="8" name="confirm-password" placeholder="Confirm Password" required>
 
 
                     <br><br>
